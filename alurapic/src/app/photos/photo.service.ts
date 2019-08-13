@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Photo } from './photo.model';
 
+const API : string = 'http://localhost:3000'
+
 @Injectable({
     providedIn: 'root'
 })
 export class PhotoService {
-
-    API : string = "http://localhost:3000"
 
     constructor(private http: HttpClient) {
 
@@ -15,7 +15,7 @@ export class PhotoService {
 
     listFromUser(userName: string) {
         return this.http
-            .get<Photo[]>(this.API + '/' + userName + '/photos');
+            .get<Photo[]>(API + '/' + userName + '/photos');
     }
 
 }
