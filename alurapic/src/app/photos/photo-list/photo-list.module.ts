@@ -5,17 +5,23 @@ import { LoadButtonComponent } from './load-button/load-button.component';
 import { FilterByDescriptionPipe } from './filter-by-description.pipe';
 import { CommonModule } from '@angular/common';
 import { PhotoModule } from '../photo/photo.module';
+import { CardModule } from 'src/app/shared/components/card/card.module';
+import { SearchComponent } from './photos/search/search.component';
+import { DarkOnHoverDirective } from 'src/app/shared/directives/dark-on-hover/dark-on-hover.directive';
 
 @NgModule({
     declarations: [
         PhotoListComponent, 
         PhotosComponent,
         LoadButtonComponent,
-        FilterByDescriptionPipe
+        SearchComponent,
+        FilterByDescriptionPipe,
+        DarkOnHoverDirective
     ],
     imports: [
         CommonModule,
-        PhotoModule
+        PhotoModule,
+        CardModule
     ]
 })
 export class PhotoListModule {

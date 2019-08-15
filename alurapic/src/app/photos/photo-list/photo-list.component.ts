@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators'
 import { PhotoService } from '../photo.service';
 
 @Component({
@@ -9,13 +7,11 @@ import { PhotoService } from '../photo.service';
   templateUrl: './photo-list.component.html',
   styleUrls: ['./photo-list.component.css']
 })
-export class PhotoListComponent implements OnInit, OnDestroy {
+export class PhotoListComponent implements OnInit {
   
   photos : Object[] = [];
   
   filter : string = '';
-  
-  debounce : Subject<string> = new Subject<string>();
 
   userName : string;
 
@@ -34,15 +30,13 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
     this.photos = this.activatedRoute.snapshot.data.photos;
     
-    this.debounce
-      .pipe(debounceTime(300))
-      .subscribe(filter => this.filter = filter)
-    
   }
 
   load() {
 
     this.photoService.listFromUserPaginated(this.userName, ++this.currentPage).subscribe(photos => {
+
+     this.filter = ''
       
      this.photos = this.photos.concat(photos)
       
@@ -54,8 +48,9 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy(): void {
-    this.debounce.unsubscribe()
+  receberFiltro($event) {
+      console.log($event);
+      this.filter = $event;
   }
   
 }
