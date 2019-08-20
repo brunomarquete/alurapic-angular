@@ -1,7 +1,7 @@
-<form [formGroup]="formGroup" class="form mt-4">
+<form [formGroup]="formGroup" class="form mt-4" (submit)="login()">
 
   <div class="form-group">
-      <input 
+      <input #inputUserName
           formControlName="userName"
           class="form-control" 
           placeholder="user name" 
